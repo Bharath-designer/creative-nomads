@@ -1,0 +1,110 @@
+.weekly-overview-container {
+  padding: 1em 2em 3em 1.4em;
+  border: 1px solid #ecebf3;
+  box-shadow: 0 1.3em 1.3em 1px rgba(0, 0, 0, 0.05);
+  border-radius: 0.6em;
+  background: white;
+  margin-top: 0.8em;
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    .title {
+      color: #56555c;
+      font-size: 1.3em;
+    }
+
+    .graph-icon {
+      display: flex;
+      margin-top: 0.3em;
+      padding-right: .5em;
+
+      img {
+        width: 2em;
+        cursor: pointer;
+      }
+    }
+  }
+  .content {
+    display: flex;
+    margin-top: .8em;
+    gap: 2em;
+
+    .left {
+      display: flex;
+      flex-direction: column;
+
+      .percent {
+        display: flex;
+        align-items: center;
+        gap: 0.4em;
+        color: var(--primary-green);
+
+        .amount {
+          font-weight: 700;
+          color: #888793;
+          font-size: 2em;
+        }
+
+        .icon {
+          display: flex;
+
+          img {
+            width: 0.85em;
+          }
+        }
+
+        .change-percent {
+          font-weight: 600;
+          font-size: 0.85em;
+          margin-left: 0.2em;
+        }
+      }
+
+      .task-status {
+        color: #888793;
+        font-weight: 300;
+      }
+
+      .task-track {
+        padding-left: 0.5em;
+        margin-top: 0.7em;
+        display: flex;
+        color: var(--primary-green);
+        font-weight: 600;
+        align-items: center;
+        gap: 0.3em;
+
+        span {
+          display: flex;
+        }
+
+        img {
+          width: 1em;
+        }
+      }
+
+      .open-task-btn {
+        margin-top: 1.5em;
+        display: flex;
+        background: none;
+        color: var(--primary-violet);
+        border: 1px solid var(--primary-violet);
+        padding: 0.75em 1em;
+        gap: 0.5em;
+        border-radius: 0.6em;
+        font-weight: 500;
+        align-items: center;
+        font-size: 0.8em;
+        cursor: pointer;
+      }
+    }
+
+    .right {
+        border: 1px solid #E6E4F0;
+        flex: 1;
+        border-radius: .6em;
+        height: 12em;
+    }
+  }
+}

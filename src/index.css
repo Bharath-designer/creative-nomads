@@ -1,0 +1,15 @@
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Plus Jakarta Sans', sans-serif; 
+
+  --primary-blue:#49CCF9;
+  --primary-green: #05CD99;
+  --primary-violet: #7B68EE;
+
+  /* font-size: 15px; */
+}
