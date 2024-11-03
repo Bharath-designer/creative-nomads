@@ -11,5 +11,15 @@ html {
   --primary-green: #05CD99;
   --primary-violet: #7B68EE;
 
-  /* font-size: 15px; */
+  opacity: 0;
+  transition: .3s font-size;
+
+  animation: root-animation .5s ease forwards;
+  animation-delay: .1s;
+}
+
+@keyframes root-animation {
+    to {
+      opacity: 1;
+    }
 }

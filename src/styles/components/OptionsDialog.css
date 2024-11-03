@@ -1,0 +1,150 @@
+.options-dialog-wrapper {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(.4em);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+    .container {
+        width: min(95%, 50em);
+        background: white;
+        box-shadow: 0 .5em 1.5em 0 rgba(0, 0, 0, 0.25);
+        border-radius: .5em;
+
+        .header {
+            padding:  1em;
+            display: flex;
+            gap: .5em;
+            align-items: center;
+            border-bottom: 1px solid #E6E4F0;
+            font-weight: 500;
+            color: #56555C;
+        }
+
+        .content {
+            width: fit-content;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5em;
+            padding: 1em;
+
+            .row {
+                display: flex;
+                flex-direction: column;
+                gap: .5em;
+
+                .label {
+                    font-size: .95em;
+                }
+
+                .row-content {
+                    display: flex;
+                    gap: .5em;
+
+                    span {
+                        display: flex;
+
+                        input {
+                            text-align: center;
+                            width: 3em;
+                            padding: .5em;
+                            outline: none;  
+                            border: 1px solid #999999;
+                            border-radius: .25em;
+
+                            &:focus {
+                                border-color: #11CCCF;
+                            }
+                        }
+
+                        button {
+                            height: 100%;
+                            width: 100%;
+                            padding: .5em 1em;
+                            background: #49CCF9;
+                            border: none;
+                            outline: none;
+                            color: white;
+                            font-weight: 500;
+                            border-radius: .25em;
+                            cursor: pointer;
+
+                        }
+
+                        button:disabled {
+                            background: rgb(171, 171, 171);
+                            cursor: default;
+                        }
+
+
+
+                    }
+
+                    .update-btn {
+                        flex: 1;
+                        
+                        button {
+                            font-size: .9em;
+                            
+                        }
+                    }
+
+                    .card {
+                        border: 1px solid #999999;
+                        font-size: .85em;
+                        padding: .5em 1em;
+                        border-radius: .25em;
+                        cursor: pointer;
+
+                        &.active {
+                            background: #49CCF9;
+                            border-color: transparent;
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+
+        .footer {
+            padding:  .5em 2em;
+            display: flex;
+            gap: 2em;
+            align-items: center;
+            border-top: 1px solid #E6E4F0;
+            font-weight: 500;
+            color: #56555C;
+            justify-content: flex-end;
+
+            .dont-show-row {
+                display: flex;
+                align-items: center;
+                gap: .25em;
+
+                span, label  {
+                    cursor: pointer;
+                    font-size: .9em;
+                    font-weight: 400;
+                    color: #56555C;
+                    user-select: none
+                    
+                };
+            }
+
+            button {
+                background: #F95454;
+                color: white;
+                border: none;
+                padding: .5em 1em;
+                border-radius: .25em;
+                cursor: pointer;
+                font-size: .85em;
+            }
+        }
+
+    }
+}

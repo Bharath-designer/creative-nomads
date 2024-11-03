@@ -16,8 +16,17 @@ import upgrade_icon from "../assets/upgrade-icon.png";
 import profile from "../assets/profile.png";
 import settings from "../assets/Setting.svg";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { toggleOptions } from "../store/OptionsSlice";
 
 const SideNavBar = () => {
+
+  const dispatch = useDispatch()
+
+  const openOptions = () => {
+    dispatch(toggleOptions(true))
+  }
+
   return (
     <div className="side-nav-container">
       <div className="top-side">
@@ -82,7 +91,7 @@ const SideNavBar = () => {
             <div className="acc-desc">Free Account</div>
           </div>
           <div className="col col-3">
-            <img src={settings} alt="" />
+            <img onClick={openOptions} src={settings} alt="" />
           </div>
         </div>
       </div>
