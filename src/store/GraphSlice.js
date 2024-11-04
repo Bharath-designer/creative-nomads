@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    data1: [45, 90, 50, 55, 100, 75, 105],
-    data2: [15, 10, 35, 5, 25, 40, 30]
+    data1: [60, 95, 70, 65, 100, 75, 105],
+    data2: [5, 35, 20, 35, 15, 25, 5]
 }
 
 const graphData = createSlice({

@@ -172,8 +172,23 @@ const Home = () => {
 
   const handleCheckItems = (taskIndex, itemIndex) => {
     const temp = [...tasks]
-        
+
     temp[taskIndex].todo[itemIndex]['isCompleted'] = !temp[taskIndex].todo[itemIndex]['isCompleted']
+
+    const shouldChangeTitle = temp[taskIndex].todo.every(todo=>{
+      if (todo.isCompleted === temp[taskIndex].todo[itemIndex]['isCompleted']) {
+        return true
+      }
+    })
+
+    if (shouldChangeTitle) {
+      temp[taskIndex].isCompleted = temp[taskIndex].todo[itemIndex]['isCompleted']
+    } else {
+      if  (temp[taskIndex].todo[itemIndex]['isCompleted'] === false) {
+        temp[taskIndex].isCompleted = false
+      }
+    }
+
     setTasks(temp)
     
   }

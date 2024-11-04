@@ -8,8 +8,8 @@ const LineGraph = () => {
   const canvasRef = useRef(null);
   const [tooltip, setTooltip] = useState(null);
   const [hoveredPoint, setHoveredPoint] = useState(null);
-  
-  useEffect(() => {    
+
+  useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     const dpr = window.devicePixelRatio || 1;
@@ -33,6 +33,7 @@ const LineGraph = () => {
     const yMax = 100;
 
     const drawSmoothLine = (data, color, shadowColor) => {
+      
       ctx.beginPath();
       ctx.strokeStyle = color;
       ctx.lineWidth = 3;
@@ -43,42 +44,60 @@ const LineGraph = () => {
       ctx.shadowBlur = 21;
       ctx.shadowOffsetX = 0;
       ctx.shadowOffsetY = 13;
-
-      data.forEach((point, i) => {
-        const x = padding + i * xGap;
-        const y =
-          canvas.height / dpr -
-          padding -
-          (point / yMax) * (canvas.height / dpr - padding * 2);
-
-        if (i === 0) {
-          ctx.moveTo(x, y);
-        } else {
-          const prevX = padding + (i - 1) * xGap;
-          const prevY =
-            canvas.height / dpr -
-            padding -
-            (data[i - 1] / yMax) * (canvas.height / dpr - padding * 2);
-          const midX = (prevX + x) / 2;
-          const midY = (prevY + y) / 2;
-
-          ctx.quadraticCurveTo(prevX, prevY, midX, midY);
-        }
-
-        if (i === data.length - 1) {
-          ctx.lineTo(x, y);
-        }
-      });
-
+      ctx.moveTo(
+          padding,
+          padding + ((yMax - data[0]) / yMax) * (canvas.height / dpr - padding * 2)
+      );
+  
+      for (let i = 1; i < data.length - 2; i++) {
+          const x0 = padding + (i - 1) * xGap;
+          const y0 = padding + ((yMax - data[i - 1]) / yMax) * (canvas.height / dpr - padding * 2);
+  
+          const x1 = padding + i * xGap;
+          const y1 = padding + ((yMax - data[i]) / yMax) * (canvas.height / dpr - padding * 2);
+  
+          const x2 = padding + (i + 1) * xGap;
+          const y2 = padding + ((yMax - data[i + 1]) / yMax) * (canvas.height / dpr - padding * 2);
+  
+          const x3 = padding + (i + 2) * xGap;
+          const y3 = padding + ((yMax - data[i + 2]) / yMax) * (canvas.height / dpr - padding * 2);
+  
+          for (let t = 0; t <= 1; t += 0.1) {
+              const xt = 0.5 * (
+                  (2 * x1) +
+                  (-x0 + x2) * t +
+                  (2 * x0 - 5 * x1 + 4 * x2 - x3) * t * t +
+                  (-x0 + 3 * x1 - 3 * x2 + x3) * t * t * t
+              );
+  
+              const yt = 0.5 * (
+                  (2 * y1) +
+                  (-y0 + y2) * t +
+                  (2 * y0 - 5 * y1 + 4 * y2 - y3) * t * t +
+                  (-y0 + 3 * y1 - 3 * y2 + y3) * t * t * t
+              );
+  
+              ctx.lineTo(xt, yt);
+          }
+      }
+  
+      // Draw the last segment to ensure it connects to the final point
+      const lastX = padding + (data.length - 1) * xGap;
+      const lastY = padding + ((yMax - data[data.length - 1]) / yMax) * (canvas.height / dpr - padding * 2);
+      ctx.lineTo(lastX, lastY);
+  
       ctx.stroke();
       ctx.shadowColor = "transparent";
+      
     };
-
     const drawPointDot = (x, y, color) => {
       ctx.beginPath();
       ctx.arc(x, y, 5, 0, Math.PI * 2);
-      ctx.fillStyle = color;
+      ctx.fillStyle = "#FFFFFF";
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
       ctx.fill();
+      ctx.stroke();
       ctx.closePath();
     };
 
@@ -115,10 +134,9 @@ const LineGraph = () => {
       line.points.forEach((value, i) => {
         const x = padding + i * xGap;
         const y =
-          canvas.height / window.devicePixelRatio -
-          padding -
-          (value / yMax) *
-            (canvas.height / (window.devicePixelRatio || 1) - padding * 2);
+          padding +
+          ((yMax - value) / yMax) *
+            (canvas.height / window.devicePixelRatio - padding * 2);
 
         const distance = Math.sqrt((x - mouseX) ** 2 + (y - mouseY) ** 2);
         if (distance < minDistance) {
@@ -150,6 +168,7 @@ const LineGraph = () => {
         <div
           className="tooltip"
           style={{
+            position: "absolute",
             top: tooltip.y,
             left: tooltip.x,
             background: tooltip.color,

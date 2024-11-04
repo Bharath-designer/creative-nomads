@@ -113,6 +113,23 @@ const OptionsDialog = () => {
     setData2([...graphData2]);
   }, []);
 
+  const handleClickOutside = (event) => {
+    if (!event.target.closest(".container")) {
+      dispatch(toggleOptions(false));
+    }
+  };
+
+  useEffect(() => {
+    if (isOptionsOpen)
+      document
+        .querySelector(".options-dialog-wrapper")
+        ?.addEventListener("click", handleClickOutside);
+    else
+      document
+        .querySelector(".options-dialog-wrapper")
+        ?.removeEventListener("click", handleClickOutside);
+  }, [isOptionsOpen]);
+
   if (!isOptionsOpen) {
     return null;
   }

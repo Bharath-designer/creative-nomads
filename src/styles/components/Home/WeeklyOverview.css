@@ -109,11 +109,11 @@
 
         .tooltip {
           position: absolute;
-          padding: .6em 2em;
+          padding: .6em 1.8em;
           border-radius: .5em;
           color: white;
           font-size: .7em;
-          transform: translate(-50%, -180%);
+          transform: translate(-50%, -165%);
           font-weight: 500;
 
           &::before {

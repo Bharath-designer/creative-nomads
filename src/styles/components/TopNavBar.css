@@ -52,12 +52,18 @@
         border: none;
         outline: none;
         width: 100%;
+        font-size: .9em !important;
 
         &::placeholder {
           color: #9896a3;
           font-family: "Plus Jakarta Sans", sans-serif;
           opacity: 1;
+          font-size: 1em !important;
         }
+      }
+
+      img {
+        width: 1.2em;
       }
     }
   }
@@ -81,6 +87,14 @@
       font-weight: 500;
       gap: 1em;
       cursor: pointer;
+      transition: .1s ease background;
+      img {
+        width: 1.2em;
+      }
+
+      &:hover {
+        background: #28aeda;
+      }
     }
 
     .notification {
